@@ -1,10 +1,11 @@
 #include "binary_trees.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 size_t height(const binary_tree_t *tree);
 int balance(const binary_tree_t *tree);
-avl_t *avl_insert_recursive(avl_t **tree, avl_t *parent,
-		avl_t **new, int value);
+avl_t *avl_insert_recursive(avl_t **tree, avl_t *parent,avl_t **new, int value);
 avl_t *avl_insert(avl_t **tree, int value);
+void insert_50_values(avl_t **tree);
 
 /**
  * height - Measures the height of a binary tree.
@@ -107,4 +108,27 @@ avl_t *avl_insert(avl_t **tree, int value)
 	}
 	avl_insert_recursive(tree, *tree, &new, value);
 	return (new);
+}
+
+
+/**
+ * insert_50_values - Inserts 50 values into an AVL tree
+ * @tree: A double pointer to the root node of the AVL tree
+ */
+void insert_50_values(avl_t **tree)
+{
+    int values[50];
+    int i;
+
+    /* Initialize with 50 values - you can modify these as needed */
+    for (i = 0; i < 50; i++) {
+        values[i] = i * 10; 
+    }
+
+    /* Insert each value into the AVL tree */
+    for (i = 0; i < 50; i++) {
+        if (avl_insert(tree, values[i]) == NULL) {
+            printf("Failed to insert value %d\n", values[i]);
+        }
+    }
 }
